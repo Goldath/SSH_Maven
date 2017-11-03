@@ -31,6 +31,13 @@
 		</action>
 
 		<action name="CrudAction_*" class="CrudAction" method="{1}"></action>
+		
+		<action name="ArticleManagerAction_*" class="ArticleManagerAction" method="{1}">
+		
+		
+		</action>
+		
+		
 
 
 	</package>

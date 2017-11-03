@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-11-3 14:43:34 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.gx.commom.BasicAttributes" table="basic_attributes" catalog="testdb">
+    <class name="com.gx.po.BasicAttributes" table="basic_attributes" catalog="testdb">
         <id name="basicAttributesId" type="java.lang.Integer">
             <column name="basicAttributesID" />
             <generator class="identity" />
@@ -14,5 +14,12 @@
         <property name="attributeVlue" type="string">
             <column name="attributeVlue" />
         </property>
+        
+        <!--表示一个分类里的所有文章 -->
+        <set name="setWebArticle">
+        <key column="waid"></key>
+        <one-to-many class="com.gx.po.WebArticle"/>
+        </set>
+        
     </class>
 </hibernate-mapping>

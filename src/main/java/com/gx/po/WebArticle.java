@@ -19,6 +19,17 @@ public class WebArticle implements java.io.Serializable {
 	private Date editTime;
 	private Integer hit;
 
+	//表示所属分类
+	private BasicAttributes attributes;
+		
+	public BasicAttributes getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(BasicAttributes attributes) {
+		this.attributes = attributes;
+	}
+
 	public WebArticle() {
 	}
 

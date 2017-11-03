@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-11-3 14:43:34 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.gx.commom.WebArticle" table="web_article" catalog="testdb">
+    <class name="com.gx.po.WebArticle" table="web_article" catalog="testdb">
         <id name="WId" type="java.lang.Integer">
             <column name="w_id" />
             <generator class="identity" />
@@ -53,5 +53,9 @@
                 <comment>&#206;&#196;&#213;&#194;&#200;&#200;&#182;&#200;</comment>
             </column>
         </property>
+        
+        <!-- 表示文章所属分类 -->
+        <many-to-one name="attributes" class="com.gx.po.BasicAttributes" column="waid"></many-to-one>
+        
     </class>
 </hibernate-mapping>

@@ -42,6 +42,8 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 		<property name="mappingResources">
 			<list>
 				<value>com/gx/mapper/User.hbm.xml</value>
+				<value>com/gx/mapper/BasicAttributes.hbm.xml</value>
+				<value>com/gx/mapper/WebArticle.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -64,11 +66,12 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 	</bean>
 
 	<!-- 开启注解扫描 (到包里面扫描类、方法、属性上面是否有注解)注解方式注入对象类型属性 -->
-	<context:component-scan base-package="com.gx.service,com.gx.dao"></context:component-scan>
+	<context:component-scan base-package="com.gx.service,com.gx.dao,com.gx.action"></context:component-scan>
 
 
 	<!--引入其他模块的spring配置文件 -->
 	<import resource="classpath:com/gx/config/spring_user.xml" />
 	<import resource="classpath:com/gx/config/spring_crud.xml" />
+	<import resource="classpath:com/gx/config/spring_article_manager.xml" />
 
 </beans>
