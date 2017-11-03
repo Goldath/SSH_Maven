@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 2.1.8才解决此请求响应乱码bug -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定请求后缀为.action，指定多个请求后缀用逗号分隔 -->
+	<constant name="struts.action.extension" value="action" />
+	<!--设置浏览器是否缓存静态内容，建议：开发阶段关闭，运行时开启 -->
+	<constant name="struts.serve.static.browserCache" value="false" />
+	<!--当struts.xml配置文件修改后，系统是否重新加载该文件，开发阶段打开此功能 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<package name="default" extends="struts-default">
+
+		<!-- 全局結果页面配置 -->
+		<global-results>
+			<result name="404">/jsp/error.jsp</result>
+		</global-results>
+
+		<!-- action 配置请求路径与Action类的映射关系 name 请求路径名称 class 请求处理的action类的全名 method 
+			请求处理的方法 converter 转换器（使用较少） -->
+		<!--在整合中class属性里面不写action全路径了，如果写,action对象创建两次 ，应写spring配置的action的bean的id值 -->
+		<action name="UserAction_*" class="userAction" method="{1}">
+			<!--配置方法的返回值到页面 -->
+			<result name="LoginSucceed">/jsp/index.jsp</result>
+			<result name="Failure">/jsp/error.jsp</result>
+		</action>
+
+		<action name="CrudAction_*" class="CrudAction" method="{1}"></action>
+
+
+	</package>
+
+
+
+
+
+</struts>

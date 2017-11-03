@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-11-3 14:43:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.gx.commom.BasicAttributes" table="basic_attributes" catalog="testdb">
+        <id name="basicAttributesId" type="java.lang.Integer">
+            <column name="basicAttributesID" />
+            <generator class="identity" />
+        </id>
+        <property name="attributesId" type="java.lang.Integer">
+            <column name="attributesID" />
+        </property>
+        <property name="attributeVlue" type="string">
+            <column name="attributeVlue" />
+        </property>
+    </class>
+</hibernate-mapping>

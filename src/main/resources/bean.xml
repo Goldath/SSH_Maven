@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!--配置c3p0连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!--注入属性值 -->
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/testdb"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+
+	<!--sessionFactory创建交给spring管理 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<!-- 因为在hibernate核心配置文件中，没有数据库配置，数据库配置在spring里面c3p0配置，注入 dataSource -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 配置hibernate基本信息,可以删掉hibernate核心配置xml -->
+		<property name="hibernateProperties">
+			<props>
+				<!-- 是否在控制台输出sql语句 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- 格式化sql -->
+				<prop key="hibernate.format_sql">true</prop>
+				<!--自动创建表 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- 数据库“方言”类，它能将不同类型的sql语法转换成统一格式 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+		<!--Hibernate映射文件的引入 -->
+		<property name="mappingResources">
+			<list>
+				<value>com/gx/mapper/User.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<!--注入sessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!--开启事务注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+
+   <!-- 创建HibernateTemplate对象用于dao层调用 -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<!--注入sessionFactory对象 -->
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 开启注解扫描 (到包里面扫描类、方法、属性上面是否有注解)注解方式注入对象类型属性 -->
+	<context:component-scan base-package="com.gx.service,com.gx.dao"></context:component-scan>
+
+
+	<!--引入其他模块的spring配置文件 -->
+	<import resource="classpath:com/gx/config/spring_user.xml" />
+	<import resource="classpath:com/gx/config/spring_crud.xml" />
+
+</beans>
