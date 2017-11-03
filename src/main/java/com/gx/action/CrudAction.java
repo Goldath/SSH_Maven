@@ -30,7 +30,7 @@ public class CrudAction extends ActionSupport {
 	 *         设定文件 @return String 返回类型 @throws
 	 */
 	public String selectUserList() throws IOException {
-
+		
 		List<User> userList = crudService.findAllUser();
 		String usersJson = new Gson().toJson(userList);
 	/*	ServletActionContext.getRequest().setAttribute("userList", userList);*/
