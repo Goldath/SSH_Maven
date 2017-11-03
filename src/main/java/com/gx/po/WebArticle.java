@@ -1,4 +1,4 @@
-package com.gx.commom;
+package com.gx.po;
 // Generated 2017-11-3 14:43:34 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
