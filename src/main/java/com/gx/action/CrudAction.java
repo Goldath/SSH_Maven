@@ -3,12 +3,14 @@ package com.gx.action;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.gson.Gson;
+import com.gx.po.BasicAttributes;
 import com.gx.po.Page;
 import com.gx.po.User;
 import com.gx.service.CrudService;
@@ -183,6 +185,15 @@ public class CrudAction extends ActionSupport {
 		// 如果使用response返回数据，action的方法不能有返回值
 		response.getWriter().write(usersJson);		
 		
+	}
+	
+	public String loadingMultiTableOperation(){
+		
+	List<BasicAttributes> BasicAttributesList=crudService.loadingInfo();
+	HttpServletRequest request=ServletActionContext.getRequest();
+	request.setAttribute("articleTypeList", BasicAttributesList);
+	
+		return "loadingPage";
 	}
 	
 

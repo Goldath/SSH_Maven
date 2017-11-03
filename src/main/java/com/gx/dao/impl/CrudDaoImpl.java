@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 
 import com.gx.dao.CrudDao;
+import com.gx.po.BasicAttributes;
 import com.gx.po.Page;
 import com.gx.po.User;
 
@@ -101,6 +102,14 @@ public class CrudDaoImpl implements CrudDao{
 	 	String hqlMoHuSelectUser="from User where userName like ?";
 		List<User> userList= (List<User>) hibernateTemplate.find(hqlMoHuSelectUser, "%"+userName+"%");
 		return userList;
+	}
+
+
+	public List<BasicAttributes> loadingInfo() {
+		
+		List<BasicAttributes> BasicAttributesList=(List<BasicAttributes>) hibernateTemplate.find("from BasicAttributes");
+		
+		return BasicAttributesList;
 	}
 
 

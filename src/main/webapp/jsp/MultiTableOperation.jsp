@@ -158,14 +158,14 @@
 			<!-- fade 淡入淡出的效果 -->
 			<div class="tab-pane fade  active" id="uploadGraphic">
 				<!--上传图文信息-->
-				<form action="${ctx}/uploadFiles/insertArticlel"
+				<form action="${ctx}/ArticleManagerAction_addWebArticle.action"
 					enctype="multipart/form-data" method="post">
 					<div class="row rowtop">
 						<div class="col-xs-3 text-right">
 							<label for="title" class="am-form-labe">标题 </label>
 						</div>
 						<div class="col-xs-8">
-							<input type="text" class="tpl-form-input" id="title" name="title"
+							<input type="text" class="tpl-form-input" id="title" name="WTitle"
 								placeholder="请输入标题文字">
 						</div>
 					</div>
@@ -175,8 +175,13 @@
 							<label for="articleType " class="am-form-labe">文章分类 </label>
 						</div>
 						<div class="col-xs-8">
-							<input type="text" class="tpl-form-input" id="articleType"
-								name="articleType" placeholder="请添加分类用点号隔开">
+							<select class="form-control tpl-form-input" name="WType"
+								id="articleType">
+								<c:forEach items="${articleTypeList}" var="articleType">
+									<option value="${articleType.basicAttributesId}">${articleType.attributeVlue}</option>
+								</c:forEach>
+							</select>
+
 						</div>
 					</div>
 
@@ -185,7 +190,7 @@
 							<label for="releaseTime" class="am-form-labe">发布时间 </label>
 						</div>
 						<div class="col-xs-8">
-							<input type="text" id="releaseTime" name="releaseTime"
+							<input type="text" id="releaseTime" name="WTime"
 								class="tpl-form-input" placeholder="发布时间">
 						</div>
 					</div>
@@ -196,7 +201,7 @@
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="tpl-form-input" id="author"
-								name="author" placeholder="作者">
+								name="WAuthor" placeholder="作者">
 						</div>
 					</div>
 
@@ -212,7 +217,7 @@
 										height="100%">
 								</div>
 								<button type="button" class="btn btn-danger btn-sm">添加封面图片</button>
-								<input id="doc-form-file" type="file" multiple=""
+								<input id="doc-form-file" type="file" multiple="" name="Images"
 									onchange="PreviewImage(this)">
 							</div>
 						</div>
@@ -224,7 +229,7 @@
 						</div>
 						<div class="col-xs-8">
 							<textarea style="width: 100%" rows="5" id="articleContent"
-								name="articleContent" placeholder="请输入文章内容。。。"></textarea>
+								name="WContent" placeholder="请输入文章内容。。。"></textarea>
 						</div>
 					</div>
 

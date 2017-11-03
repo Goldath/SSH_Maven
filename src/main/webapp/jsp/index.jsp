@@ -78,7 +78,7 @@ body {
 				<h1>SSH框架的Crud操作</h1>
 			</div>
 			<div class="col-sm-6">
-				<a style="margin: 12px 5px" href="${ctx}/jsp/MultiTableOperation.jsp"
+				<a style="margin: 12px 5px" href="${ctx}/CrudAction_loadingMultiTableOperation.action"
 					class="btn btn-primary btn-lg">多表操作</a> <a
 					style="margin: 12px 5px" href="javascript:;"
 					class="btn btn-warning btn-lg">导入导出Excl</a> <a

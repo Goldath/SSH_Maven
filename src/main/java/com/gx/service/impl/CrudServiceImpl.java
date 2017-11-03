@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gx.dao.CrudDao;
+import com.gx.po.BasicAttributes;
 import com.gx.po.Page;
 import com.gx.po.User;
 import com.gx.service.CrudService;
@@ -89,5 +90,10 @@ public class CrudServiceImpl implements CrudService {
 	public List<User> findUserByName(String userName) {
 		// TODO Auto-generated method stub
 		return crudDao.findUserByName(userName);
+	}
+
+	public List<BasicAttributes> loadingInfo() {
+		// TODO Auto-generated method stub
+		return crudDao.loadingInfo();
 	}
 }
