@@ -31,10 +31,10 @@ body {
 #table th {
 	text-align: center;
 }
-.search{
 
-    height: 40px;
-    width: 300px;
+.search {
+	height: 40px;
+	width: 300px;
 }
 
 .search-group {
@@ -78,11 +78,12 @@ body {
 				<h1>SSH框架的Crud操作</h1>
 			</div>
 			<div class="col-sm-6">
-				<a style="margin: 12px 5px" href="${ctx}/CrudAction_loadingMultiTableOperation.action"
-					class="btn btn-primary btn-lg">多表操作</a> <a
-					style="margin: 12px 5px" href="javascript:;"
-					class="btn btn-warning btn-lg">导入导出Excl</a> <a
-					style="margin: 12px 5px" href="javascript:;"
+				<a style="margin: 12px 5px"
+					href="${ctx}/CrudAction_loadingMultiTableOperation.action"
+					class="btn btn-primary btn-lg">多表操作</a> <a style="margin: 12px 5px"
+					href="javascript:;" class="btn btn-warning btn-lg">导入导出Excl</a> <a
+					style="margin: 12px 5px"
+					href="${ctx}/ArticleManagerAction_loadGraphicList.action"
 					class="btn btn-info btn-lg">图文列表</a> <a style="margin: 12px 5px"
 					href="${ctx}/CrudAction_selectUserList.action"
 					class="btn btn-danger btn-lg">刷新列表</a>
@@ -93,18 +94,19 @@ body {
 			</div>
 		</div>
 		<div class="row">
-		 <!--查询框  -->
-		<div class="search  col-md-4 text-right pull-right">
-			<div class="search-group">
-				<input type="text" class="search-group-input form-control" id="search-input">
-				<button class="btn  btn-success search-group-btn">
-					<i class="fa fa-search" onclick="findUserByName()"></i>
-				</button>
+			<!--查询框  -->
+			<div class="search  col-md-4 text-right pull-right">
+				<div class="search-group">
+					<input type="text" class="search-group-input form-control"
+						id="search-input">
+					<button class="btn  btn-success search-group-btn">
+						<i class="fa fa-search" onclick="findUserByName()"></i>
+					</button>
+
+				</div>
 
 			</div>
 
-		</div>
-		
 			<div class="col-sm-12">
 				<table class="table table-hover" id="table">
 					<thead>
@@ -123,7 +125,7 @@ body {
 
 		<!-- 分页 -->
 		<nav id="pagingContainer" class="container-fluid">
-		
+
 
 		<ul class="pagination padding pull-right" style="margin: 0">
 			<c:if test="${page.currentPage>1}">

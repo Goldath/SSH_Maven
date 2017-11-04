@@ -1,5 +1,7 @@
 package com.gx.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,5 +18,10 @@ public class ArticleManagerServiceImpl implements ArticleManagerService {
 	public void insertArticle(WebArticle article) {
 		// TODO Auto-generated method stub
 		articleManagerDao.insertArticle(article);
+	}
+
+	public List<WebArticle> selectAllArticle() {
+		// TODO Auto-generated method stub
+		return articleManagerDao.selectAllArticle();
 	}
 }

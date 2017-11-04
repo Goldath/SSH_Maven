@@ -3,34 +3,39 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 2017-11-3 14:43:34 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.gx.commom.Authoritytype" table="authoritytype" catalog="testdb">
-        <id name="authorityTypeId" type="java.lang.Integer">
-            <column name="authorityTypeID" />
-            <generator class="identity" />
-        </id>
-        <many-to-one name="authoritytypeByClidId" class="com.gx.commom.Authoritytype" fetch="select">
-            <column name="clidID" />
-        </many-to-one>
-        <many-to-one name="authoritytypeByAuthorityId" class="com.gx.commom.Authoritytype" fetch="select">
-            <column name="authorityID" />
-        </many-to-one>
-        <property name="authorityName" type="string">
-            <column name="authorityName" length="50" />
-        </property>
-        <property name="ifCancel" type="java.lang.Byte">
-            <column name="ifCancel" />
-        </property>
-        <set name="authoritytypesForAuthorityId" table="authoritytype" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="authorityID" />
-            </key>
-            <one-to-many class="com.gx.commom.Authoritytype" />
-        </set>
-        <set name="authoritytypesForClidId" table="authoritytype" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="clidID" />
-            </key>
-            <one-to-many class="com.gx.commom.Authoritytype" />
-        </set>
-    </class>
+	<class name="com.gx.commom.Authoritytype" table="authoritytype"
+		catalog="testdb">
+		<id name="authorityTypeId" type="java.lang.Integer">
+			<column name="authorityTypeID" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="authoritytypeByClidId" class="com.gx.commom.Authoritytype"
+			fetch="select">
+			<column name="clidID" />
+		</many-to-one>
+		<many-to-one name="authoritytypeByAuthorityId" class="com.gx.commom.Authoritytype"
+			fetch="select">
+			<column name="authorityID" />
+		</many-to-one>
+		<property name="authorityName" type="string">
+			<column name="authorityName" length="50" />
+		</property>
+		<property name="ifCancel" type="java.lang.Byte">
+			<column name="ifCancel" />
+		</property>
+		<set name="authoritytypesForAuthorityId" table="authoritytype"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="authorityID" />
+			</key>
+			<one-to-many class="com.gx.commom.Authoritytype" />
+		</set>
+		<set name="authoritytypesForClidId" table="authoritytype" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="clidID" />
+			</key>
+			<one-to-many class="com.gx.commom.Authoritytype" />
+		</set>
+	</class>
 </hibernate-mapping>

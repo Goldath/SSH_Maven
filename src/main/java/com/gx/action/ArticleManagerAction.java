@@ -3,14 +3,19 @@ package com.gx.action;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.gx.po.BasicAttributes;
 import com.gx.po.WebArticle;
 import com.gx.service.ArticleManagerService;
+import com.gx.service.CrudService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -25,6 +30,9 @@ public class ArticleManagerAction extends ActionSupport implements ModelDriven<W
 	// 注解方式注入service对象
 	@Autowired
 	private ArticleManagerService articleManagerService;
+	
+	@Autowired
+	private CrudService crudService;
 
 	// 以模型驱动的方式获取界面数据
 	WebArticle webArticle = new WebArticle();
@@ -92,5 +100,26 @@ public class ArticleManagerAction extends ActionSupport implements ModelDriven<W
 
 		return "success";
 	}
+	
+	/**
+	 * 
+	* @Title: loadGraphicList 
+	* @Description: TODO(加载图文列表和绑定下拉框) 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
+	public String loadGraphicList(){
+		
+		List<BasicAttributes> BasicAttributesList=crudService.loadingInfo();
+		List<WebArticle> articleList=articleManagerService.selectAllArticle();
+	
+		ActionContext.getContext().put("articleTypeList", BasicAttributesList);
+		ActionContext.getContext().put("articleList", articleList);
+		
+		return "loadGraphicList";
+	}
+	
+	
 
 }

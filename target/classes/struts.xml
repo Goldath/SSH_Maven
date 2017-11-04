@@ -14,8 +14,8 @@
 	<!--当struts.xml配置文件修改后，系统是否重新加载该文件，开发阶段打开此功能 -->
 	<constant name="struts.configuration.xml.reload" value="true" />
 
-<!--设置上传文件的大小  -->
-<constant name="struts.multipart.maxSize" value="2097152000"></constant>
+	<!--设置上传文件的大小 -->
+	<constant name="struts.multipart.maxSize" value="2097152000"></constant>
 
 	<package name="default" extends="struts-default">
 
@@ -33,15 +33,17 @@
 			<result name="Failure">/jsp/error.jsp</result>
 		</action>
 
-		<action name="CrudAction_*" class="CrudAction" method="{1}">		
-		<result name="loadingPage">/jsp/MultiTableOperation.jsp</result>		
+		<action name="CrudAction_*" class="CrudAction" method="{1}">
+			<result name="loadingPage">/jsp/insertArticle.jsp</result>
 		</action>
-		
-		<action name="ArticleManagerAction_*" class="ArticleManagerAction" method="{1}">
-		<result name="success">/jsp/resultIndex.jsp</result>	
+
+		<action name="ArticleManagerAction_*" class="ArticleManagerAction"
+			method="{1}">
+			<result name="success">/jsp/resultIndex.jsp</result>
+			<result name="loadGraphicList">/jsp/graphicList.jsp</result>
 		</action>
-		
-		
+
+
 
 
 	</package>

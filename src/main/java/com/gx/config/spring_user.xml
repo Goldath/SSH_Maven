@@ -10,7 +10,7 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd">
-	
+
 
 	<!--配置action对象 scope属性：单实例对象 -->
 	<bean id="userAction" class="com.gx.action.UserAction" scope="prototype">

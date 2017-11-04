@@ -169,13 +169,23 @@
 								placeholder="请输入标题文字">
 						</div>
 					</div>
+					
+						<div class="row rowtop">
+						<div class="col-xs-3 text-right">
+							<label for="WDescription" class="am-form-labe">描述 </label>
+						</div>
+						<div class="col-xs-8">
+							<input type="text" class="tpl-form-input" id="WDescription" name="WDescription"
+								placeholder="请输入简单的描述文字">
+						</div>
+					</div>
 
 					<div class="row rowtop">
 						<div class="col-xs-3 text-right">
 							<label for="articleType " class="am-form-labe">文章分类 </label>
 						</div>
 						<div class="col-xs-8">
-							<select class="form-control tpl-form-input" name="WType"
+							<select class="form-control tpl-form-input" name="attributes.basicAttributesId"
 								id="articleType">
 								<c:forEach items="${articleTypeList}" var="articleType">
 									<option value="${articleType.basicAttributesId}">${articleType.attributeVlue}</option>

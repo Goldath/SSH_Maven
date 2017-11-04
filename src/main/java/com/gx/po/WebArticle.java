@@ -10,7 +10,6 @@ public class WebArticle implements java.io.Serializable {
 
 	private Integer WId;
 	private String WTitle;
-	private Integer WType;
 	private String WAuthor;
 	private String WImages;
 	private String WContent;
@@ -33,10 +32,9 @@ public class WebArticle implements java.io.Serializable {
 	public WebArticle() {
 	}
 
-	public WebArticle(String WTitle, Integer WType, String WAuthor, String WImages, String WContent,
+	public WebArticle(String WTitle, String WAuthor, String WImages, String WContent,
 			String WDescription, Date WTime, Date editTime, Integer hit) {
 		this.WTitle = WTitle;
-		this.WType = WType;
 		this.WAuthor = WAuthor;
 		this.WImages = WImages;
 		this.WContent = WContent;
@@ -62,13 +60,6 @@ public class WebArticle implements java.io.Serializable {
 		this.WTitle = WTitle;
 	}
 
-	public Integer getWType() {
-		return this.WType;
-	}
-
-	public void setWType(Integer WType) {
-		this.WType = WType;
-	}
 
 	public String getWAuthor() {
 		return this.WAuthor;

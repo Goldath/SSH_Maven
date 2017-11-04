@@ -12,7 +12,8 @@ http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!--配置action对象 scope属性：单实例对象 -->
-	<bean id="ArticleManagerAction" class="com.gx.action.ArticleManagerAction" scope="prototype"></bean>
+	<bean id="ArticleManagerAction" class="com.gx.action.ArticleManagerAction"
+		scope="prototype"></bean>
 
 	<!--创建dao实现类对象 接口=实现类 -->
 	<bean id="ArticleManagerDao" class="com.gx.dao.impl.ArticleManagerDaoImpl"></bean>
