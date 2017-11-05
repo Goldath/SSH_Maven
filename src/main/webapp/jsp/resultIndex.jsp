@@ -16,7 +16,6 @@
 <script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
 </head>
 
-<body>
 <body style="text-align: center; padding-top: 200px">
 	<h1>${msg}。。。</h1>
 	<hr>
@@ -35,7 +34,7 @@
 			if (curCount == 0) {
 				window.clearInterval(InterValObj);//停止计时器
 				//window.location.href="jsp/login.jsp";//当前地址
-				top.location = '${ctx}/CrudAction_loadingMultiTableOperation.action'; //顶部地址
+				top.location = '${ctx}/ArticleManagerAction_loadGraphicList.action'; //顶部地址
 			} else {
 				curCount--;
 				$("#times").text(curCount + "秒后回到主页界面");

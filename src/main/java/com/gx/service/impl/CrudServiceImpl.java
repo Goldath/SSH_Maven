@@ -96,4 +96,9 @@ public class CrudServiceImpl implements CrudService {
 		// TODO Auto-generated method stub
 		return crudDao.loadingInfo();
 	}
+
+	public List loadingAnalysis() {
+		// TODO Auto-generated method stub
+		return crudDao.loadingAnalysis();
+	}
 }

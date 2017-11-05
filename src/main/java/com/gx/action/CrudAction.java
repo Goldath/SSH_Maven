@@ -187,7 +187,15 @@ public class CrudAction extends ActionSupport {
 		
 	}
 	
-	public String loadingMultiTableOperation(){
+	/**
+	 * 
+	* @Title: loadingloadingInsertArticle 
+	* @Description: TODO(加载新增文章页面) 
+	* @param @return    设定文件 
+	* @return String    返回类型 
+	* @throws
+	 */
+	public String loadingloadingInsertArticle(){
 		
 	List<BasicAttributes> BasicAttributesList=crudService.loadingInfo();
 	HttpServletRequest request=ServletActionContext.getRequest();
@@ -195,6 +203,43 @@ public class CrudAction extends ActionSupport {
 	
 		return "loadingPage";
 	}
+	
+/**
+ * 
+* @Title: loadingTongJiFengXing 
+* @Description: TODO(加载统计分析) 
+* @param @return    设定文件 
+* @return String    返回类型 
+* @throws
+ */
+	public String loadingTongJiFengXi(){	
+
+	
+		return "TongJiFengXi";
+	}
+	/**
+	 * @throws IOException 
+	 * 
+	* @Title: LoadingUserAnalysis 
+	* @Description: TODO(异步加载图表数据) 
+	* @param     设定文件 
+	* @return void    返回类型 
+	* @throws
+	 */
+	public void loadingAnalysis() throws IOException{
+		
+		List list=crudService.loadingAnalysis();		
+		String analysisJson = new Gson().toJson(list);
+		// 使用reponse对象进行返回
+		HttpServletResponse response = ServletActionContext.getResponse();
+		// 解决响应乱码问题
+		response.setContentType("application/json;charset=utf-8");
+		// 如果使用response返回数据，action的方法不能有返回值
+		response.getWriter().write(analysisJson);
+		System.out.println(analysisJson);
+	}
+	
+	
 	
 
 }

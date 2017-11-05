@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!--修复java从数据库读取时间的时候时间参数后多了一个.0 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set value="${pageContext.request.contextPath}" scope="page" var="ctx"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,6 +61,9 @@
 
 ul li {
 	list-style: none;
+	height: 480px;
+	margin-bottom: 5px;
+	overflow: hidden;
 }
 
 #graphicList {
@@ -67,9 +72,11 @@ ul li {
 
 .table-images-content {
 	width: 100%;
+	height: 100%;
 	border: 1px solid #e7ecf1;
 	padding: 25px;
 	margin-bottom: 20px;
+	border: 1px solid #e7ecf1;
 }
 
 .table-images-content-i-time {
@@ -84,17 +91,20 @@ ul li {
 .i-title {
 	font-size: 14px;
 	padding-bottom: 10px;
+	font-weight: bold;
 }
 
 .table-images-content-i {
 	position: relative;
 	display: block;
 	width: 100%;
+	height: 220px;
 }
 
 .content-img {
 	display: block;
 	width: 100%;
+	height: 100%;
 	box-sizing: border-box;
 	vertical-align: middle;
 	border: 0;
@@ -116,20 +126,30 @@ ul li {
 
 .table-images-content-block {
 	width: 100%;
+	height: 163px;
 	padding-top: 10px;
 	color: #333;
+	position: relative;
 }
 
 .tpl-i-font {
+	text-indent: 2em; /* 空两个字符的属性 */
 	font-size: 14px;
 	color: #666;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	line-height: 1.6em;
-	max-height: 3em;
+	/* 	max-height: 3em; */ /* 只显示3行的属性*/
 	display: -webkit-box; /* 文本以省略号代替 */
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 5;
+}
+
+.tpl-i-more {
+	position: absolute;
+	bottom: 2px;
+	width: 100%;
+	height: 50px;
 }
 
 #user-statistics {
@@ -160,6 +180,10 @@ ul li {
 	color: #0066FF
 }
 
+.font-red {
+	color: red
+}
+
 .font-suceess {
 	color: #FF6600
 }
@@ -177,7 +201,7 @@ ul li {
 
 			<div class="controlerTool col-md-4">
 				<a type="button"
-					href="${ctx}/CrudAction_loadingMultiTableOperation.action"
+					href="${ctx}/CrudAction_loadingInsertArticle.action"
 					class="btn btn-sm btn-success controlerTool-btn"> <span
 					class="fa fa-plus"></span> 新增
 				</a> <a type="button" class="btn btn-sm btn-info controlerTool-btn">
@@ -189,8 +213,9 @@ ul li {
 				</a>
 			</div>
 
+<form action="${ctx}/ArticleManagerAction_selectArticleByMultipleConditionsCombined.action" method="post">
 			<div class="selectedType  col-md-3">
-				<select class="form-control">
+				<select class="form-control" name="attributes.basicAttributesId" >
 					<c:forEach items="${articleTypeList}" var="articleType">
 						<option value="${articleType.basicAttributesId}">${articleType.attributeVlue}</option>
 					</c:forEach>
@@ -200,15 +225,16 @@ ul li {
 			<div class="col-md-1"></div>
 			<div class="search  col-md-4 text-right">
 				<div class="search-group">
-					<input type="text" class="search-group-input form-control">
+					<input type="text" class="search-group-input form-control" name="WTitle">
 
-					<button class="btn  btn-success search-group-btn">
+					<button type="submit" class="btn  btn-success search-group-btn">
 						<i class="fa fa-search"></i>
 					</button>
 
 				</div>
-
 			</div>
+</form>
+		
 		</div>
 
 		<div class=" row graphic-content">
@@ -217,46 +243,35 @@ ul li {
 				<c:forEach items="${articleList}" var="article">
 					<li class="col-md-4">
 						<div class="table-images-content">
-							<!-- ${article.WTime} + -->
-							<div class="table-images-content-i-time">${article.WTime}（
-								${article.attributes.attributeVlue}）</div>
+							<div class="table-images-content-i-time">
+								<fmt:formatDate type="time" value="${article.WTime}"
+									pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
+								（${article.attributes.attributeVlue}） <a href="javascript:;">查看详情</a>
+								 <a href="${ctx}/ArticleManagerAction_deleteWebArticle.action?WId=${article.WId}"  class="pull-right font-red fa fa-trash-o"></a>
+								 <a href="${ctx}/ArticleManagerAction_loaddingWebArticle.action?WId=${article.WId}"  class="pull-right font-green fa fa-edit" style="margin-right: 5px"></a>
+							</div>
 							<div class="i-title">${article.WTitle}</div>
-							<a href="javascript:;" class="table-images-content-i">
+							<a href="${ctx}/imgdata/${article.WImages}" class="table-images-content-i">
 								<div class="table-images-content-i-info">
 									<span class="ico-touxiang"> <img class="img-circle"
 										src="${ctx}/img/15830114.jpg" width="40px" height="40px"
 										alt="">${article.WAuthor}
 									</span>
 
-								</div> <img class="content-img" src="${ctx}/img/04.jpg" alt="">
+								</div> <img class="content-img"
+								src="${ctx}/imgdata/${article.WImages}" alt=""> <%-- <img class="content-img" src="${ctx}/img/04.jpg" alt=""> --%>
 							</a>
 							<div class="table-images-content-block">
-								<div class="tpl-i-font">${article.WDescription}</div>
+								<div class="tpl-i-font">${article.WContent}</div>
 								<div class="tpl-i-more">
 									<ul id="user-statistics">
-										<li><span class="icon-rss font-blue"> 100+</span></li>
-										<li><span class="icon-tasks font-suceess"> 235+</span></li>
-										<li><span class="icon-github font-green"> 600+</span></li>
+										<li><span class="fa fa-eye font-blue"> 100+</span></li>
+										<li><span class="fa fa-star-o font-suceess"> 235+</span></li>
+										<li><span class="fa fa-thumbs-o-up font-green">
+												600+</span></li>
 									</ul>
 								</div>
-								<div class="btn-toolbar">
-									<button type="button"
-										class="btn btn-xs btn-success controlerTool-btn">
-										<span class="fa fa-plus"></span> 新增
-									</button>
-									<button type="button"
-										class="btn btn-xs btn-info controlerTool-btn">
-										<span class="fa fa-star-o"></span> 保存
-									</button>
-									<button type="button"
-										class="btn btn-xs btn-warning controlerTool-btn">
-										<span class=" fa fa-legal "></span> 审核
-									</button>
-									<button type="button"
-										class="btn btn-xs btn-danger controlerTool-btn">
-										<span class="fa fa-trash-o"></span> 删除
-									</button>
-								</div>
+
 							</div>
 						</div>
 
@@ -269,5 +284,12 @@ ul li {
 	</div>
 	<script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="${ctx}/js/bootstrap.js"></script>
+	<!-- 	<script type="text/javascript">	
+	$("ul li").click(function(){
+        var item = $(this).index()+1;  //获取索引下标 也从0开始
+        var textword = $(this).text();  //文本内容
+        alert("下标索引值为：" + item +"\n"+ "文本内容是："+textword); //  \n换行
+    })
+	</script> -->
 </body>
 </html>

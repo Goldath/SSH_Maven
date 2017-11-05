@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>多表操作</title>
+<title>修改文章</title>
 <link rel="stylesheet" type="text/css" href="${ctx}/css/bootstrap.css">
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/css/font-awesome.min.css">
@@ -142,26 +142,23 @@
 <body>
 	<div class="container-fluid">
 
-		<ul class="nav nav-tabs nav-justified" id="featuresTab">
-			<li class="active"><a href="#uploadGraphic" data-toggle="tab">图文上传</a></li>
-			<li><a href="#uploadPicture" data-toggle="tab">图片上传</a></li>
-			<li><a href="#uploadFile" data-toggle="tab">文件上传</a></li>
-			<li><a href="#importExportExcl" data-toggle="tab">导入导出Excl</a></li>
-		</ul>
-
-		<div class="tab-content">
-			<!-- fade 淡入淡出的效果 -->
-			<div class="tab-pane fade  active" id="uploadGraphic">
 				<!--上传图文信息-->
-				<form action="${ctx}/ArticleManagerAction_addWebArticle.action"
+				<form action="${ctx}/ArticleManagerAction_editWevArticle.action"
 					enctype="multipart/form-data" method="post">
+					<!--文章id  -->
+					<input type="hidden" name="WId" value="${webArticle.WId}"/>
+					<!--文章发布的日期  -->
+					<input type="hidden" name="WTime" value="${webArticle.WTime}"/>
+					<!--文章图片的url  -->
+					<input type="hidden" name="WImages" value="${webArticle.WImages}"/>
+					
 					<div class="row rowtop">
 						<div class="col-xs-3 text-right">
 							<label for="title" class="am-form-labe">标题 </label>
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="tpl-form-input" id="title"
-								name="WTitle" placeholder="请输入标题文字">
+								name="WTitle" value="${webArticle.WTitle}">
 						</div>
 					</div>
 
@@ -171,7 +168,7 @@
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="tpl-form-input" id="WDescription"
-								name="WDescription" placeholder="请输入简单的描述文字">
+								name="WDescription" value="${webArticle.WDescription}">
 						</div>
 					</div>
 
@@ -196,7 +193,7 @@
 						</div>
 						<div class="col-xs-8">
 							<input type="text" class="tpl-form-input" id="author"
-								name="WAuthor" placeholder="作者">
+								name="WAuthor" value="${webArticle.WAuthor}">
 						</div>
 					</div>
 
@@ -208,7 +205,7 @@
 						<div class="col-xs-8">
 							<div class="form-file">
 								<div class="form-file-img" id="imgPreview">
-									<img src="${ctx}/img/sinablogb.jpg" alt="封面图" width="100%"
+									<img src="${ctx}/imgdata/${webArticle.WImages}" alt="封面图" width="100%"
 										height="100%">
 								</div>
 								<button type="button" class="btn btn-danger btn-sm">添加封面图片</button>
@@ -224,68 +221,25 @@
 						</div>
 						<div class="col-xs-8">
 							<textarea style="width: 100%" rows="5" id="articleContent"
-								name="WContent" placeholder="请输入文章内容。。。"></textarea>
+								name="WContent">${webArticle.WContent}</textarea>
 						</div>
 					</div>
 
 					<div class="row rowtop text-center">
 						<div class="col-xs-3 text-right"></div>
 						<div class="col-xs-8 text-left">
-							<button type="submit" class="btn btn-info btn-lg">提交</button>
+							<button type="submit" class="btn btn-info btn-lg">保存</button>
 						</div>
 
 					</div>
 
 				</form>
 
-			</div>
-
-			<div class="tab-pane fade" id="uploadPicture">
-				<!--  上传图片信息 -->
-				<div class="imgBox  container-fluid">
-					<div class="imgSelect row">
-						<div class="col-md-5 imgSelect-way">
-							<div id="imgPreview" style="width: 100%; height: 90px">
-								<img src="" alt="" width="100%" height="100%">
-							</div>
-							<button type="button" class="btn btn-danger btn-sm form-control">选择图片</button>
-							<input id="selectedfile" type="file" multiple="">
-						</div>
-						<div class="col-md-7 imgSelect-way">
-							<span id="fileDragArea" class="upload_drag_area">或者将文件拖到此处</span>
-
-						</div>
-					</div>
-
-					<div class="imgMsg">
-						<div id="status_info" class="info">选中0张文件，共0B。</div>
-						<div class="btns">
-							<div class="btn btn-default">继续选择</div>
-							<div class="btn btn-info">开始上传</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			<div class="tab-pane fade" id="uploadFile">
-				<!--上传文件 -->
-				<p>上传文件</p>
-			</div>
-
-			<div class="tab-pane fade" id="importExportExcl">
-				<!-- 导入导出Excl-->
-				<p>导入导出Excl</p>
-			</div>
-
-
-		</div>
 	</div>
 
 	<script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript" src="${ctx}/js/bootstrap.js"></script>
 	<script type="text/javascript">
-
 		//**********************  图片回显      ***************************
 		function PreviewImage(imgFile) {
 			var pattern = /(\.*.jpg$)|(\.*.png$)|(\.*.jpeg$)|(\.*.gif$)|(\.*.bmp$)/;

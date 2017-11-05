@@ -14,8 +14,6 @@
 			</column>
 		</property>
 
-
-
 		<property name="WAuthor" type="string">
 			<column name="w_author">
 				<comment>&#215;&#247;&#213;&#223;</comment>
@@ -54,7 +52,7 @@
 
 		<!-- 表示文章所属分类 -->
 		<many-to-one name="attributes" class="com.gx.po.BasicAttributes"
-			column="basicAttributesID"></many-to-one>
+			column="basicAttributesID" lazy="false"></many-to-one>
 
 	</class>
 </hibernate-mapping>

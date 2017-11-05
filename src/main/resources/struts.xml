@@ -15,7 +15,7 @@
 	<constant name="struts.configuration.xml.reload" value="true" />
 
 	<!--设置上传文件的大小 -->
-	<constant name="struts.multipart.maxSize" value="2097152000"></constant>
+	<constant name="struts.multipart.maxSize" value="50000000"></constant>
 
 	<package name="default" extends="struts-default">
 
@@ -35,12 +35,18 @@
 
 		<action name="CrudAction_*" class="CrudAction" method="{1}">
 			<result name="loadingPage">/jsp/insertArticle.jsp</result>
+			<result name="TongJiFengXi">/jsp/statisticalAnalysis.jsp</result>			
 		</action>
 
 		<action name="ArticleManagerAction_*" class="ArticleManagerAction"
 			method="{1}">
-			<result name="success">/jsp/resultIndex.jsp</result>
+			<result name="insertSuccess">/jsp/resultIndex.jsp</result>
 			<result name="loadGraphicList">/jsp/graphicList.jsp</result>
+			<result name="loaddingWebArticle">/jsp/edittArticle.jsp</result>
+			<result name="editSuccess">/jsp/resultIndex.jsp</result>
+			<result name="deleteSuccess">/jsp/resultIndex.jsp</result>
+			<result name="selectSuccess">/jsp/graphicList.jsp</result>		
+			
 		</action>
 
 

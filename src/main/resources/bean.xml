@@ -59,7 +59,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
 
-   <!-- 创建HibernateTemplate对象用于dao层调用 -->
+	<!-- 创建HibernateTemplate对象用于dao层调用 -->
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
 		<!--注入sessionFactory对象 -->
 		<property name="sessionFactory" ref="sessionFactory" />

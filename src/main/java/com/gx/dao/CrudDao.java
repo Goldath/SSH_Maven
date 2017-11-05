@@ -37,4 +37,8 @@ public interface CrudDao {
 	
 	//加载多表操作的下拉框信息
 	List<BasicAttributes> loadingInfo();
+	
+	//加载用户图表数据
+	List loadingAnalysis();
+	
 }

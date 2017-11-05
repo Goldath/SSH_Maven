@@ -79,8 +79,9 @@ body {
 			</div>
 			<div class="col-sm-6">
 				<a style="margin: 12px 5px"
-					href="${ctx}/CrudAction_loadingMultiTableOperation.action"
-					class="btn btn-primary btn-lg">多表操作</a> <a style="margin: 12px 5px"
+					href="${ctx}/CrudAction_loadingTongJiFengXi.action"
+					class="btn btn-primary btn-lg">统计分析</a> 
+					<a style="margin: 12px 5px"
 					href="javascript:;" class="btn btn-warning btn-lg">导入导出Excl</a> <a
 					style="margin: 12px 5px"
 					href="${ctx}/ArticleManagerAction_loadGraphicList.action"
@@ -254,6 +255,8 @@ body {
 										//删除用户
 										for (var i = 0; i < source.length; i++) {
 											if (source[i].id == data) {
+												
+												
 												if (confirm("是否删除所选信息?")) {
 													$
 															.post(

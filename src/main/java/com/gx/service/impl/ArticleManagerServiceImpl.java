@@ -24,4 +24,27 @@ public class ArticleManagerServiceImpl implements ArticleManagerService {
 		// TODO Auto-generated method stub
 		return articleManagerDao.selectAllArticle();
 	}
+
+	public WebArticle findArticleByID(int id) {
+		// TODO Auto-generated method stub
+		return articleManagerDao.findArticleByID(id);
+	}
+
+	public void updateArticle(WebArticle webArticle) {
+		// TODO Auto-generated method stub
+		articleManagerDao.updateArticle(webArticle);
+		
+	}
+
+	public void deleteArticle(WebArticle webArticle) {
+		// TODO Auto-generated method stub
+		articleManagerDao.deleteArticle(webArticle);
+		
+	}
+
+	public List<WebArticle> selectArticleByMultipleConditionsCombined(WebArticle webArticle) {
+		// TODO Auto-generated method stub
+		return articleManagerDao.selectArticleByMultipleConditionsCombined(webArticle);
+	}
+
 }
