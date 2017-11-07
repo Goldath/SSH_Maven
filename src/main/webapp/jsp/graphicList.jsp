@@ -213,28 +213,31 @@ ul li {
 				</a>
 			</div>
 
-<form action="${ctx}/ArticleManagerAction_selectArticleByMultipleConditionsCombined.action" method="post">
-			<div class="selectedType  col-md-3">
-				<select class="form-control" name="attributes.basicAttributesId" >
-					<c:forEach items="${articleTypeList}" var="articleType">
-						<option value="${articleType.basicAttributesId}">${articleType.attributeVlue}</option>
-					</c:forEach>
-				</select>
-
-			</div>
-			<div class="col-md-1"></div>
-			<div class="search  col-md-4 text-right">
-				<div class="search-group">
-					<input type="text" class="search-group-input form-control" name="WTitle">
-
-					<button type="submit" class="btn  btn-success search-group-btn">
-						<i class="fa fa-search"></i>
-					</button>
+			<form
+				action="${ctx}/ArticleManagerAction_selectArticleByMultipleConditionsCombined.action"
+				method="post">
+				<div class="selectedType  col-md-3">
+					<select class="form-control" name="attributes.basicAttributesId">
+						<c:forEach items="${articleTypeList}" var="articleType">
+							<option value="${articleType.basicAttributesId}">${articleType.attributeVlue}</option>
+						</c:forEach>
+					</select>
 
 				</div>
-			</div>
-</form>
-		
+				<div class="col-md-1"></div>
+				<div class="search  col-md-4 text-right">
+					<div class="search-group">
+						<input type="text" class="search-group-input form-control"
+							name="WTitle">
+
+						<button type="submit" class="btn  btn-success search-group-btn">
+							<i class="fa fa-search"></i>
+						</button>
+
+					</div>
+				</div>
+			</form>
+
 		</div>
 
 		<div class=" row graphic-content">
@@ -247,11 +250,16 @@ ul li {
 								<fmt:formatDate type="time" value="${article.WTime}"
 									pattern="yyyy-MM-dd HH:mm:ss"></fmt:formatDate>
 								（${article.attributes.attributeVlue}） <a href="javascript:;">查看详情</a>
-								 <a href="${ctx}/ArticleManagerAction_deleteWebArticle.action?WId=${article.WId}"  class="pull-right font-red fa fa-trash-o"></a>
-								 <a href="${ctx}/ArticleManagerAction_loaddingWebArticle.action?WId=${article.WId}"  class="pull-right font-green fa fa-edit" style="margin-right: 5px"></a>
+								<a
+									href="${ctx}/ArticleManagerAction_deleteWebArticle.action?WId=${article.WId}"
+									class="pull-right font-red fa fa-trash-o"></a> <a
+									href="${ctx}/ArticleManagerAction_loaddingWebArticle.action?WId=${article.WId}"
+									class="pull-right font-green fa fa-edit"
+									style="margin-right: 5px"></a>
 							</div>
 							<div class="i-title">${article.WTitle}</div>
-							<a href="${ctx}/imgdata/${article.WImages}" class="table-images-content-i">
+							<a href="${ctx}/imgdata/${article.WImages}"
+								class="table-images-content-i">
 								<div class="table-images-content-i-info">
 									<span class="ico-touxiang"> <img class="img-circle"
 										src="${ctx}/img/15830114.jpg" width="40px" height="40px"

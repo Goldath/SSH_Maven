@@ -17,25 +17,25 @@
 		<div id="echarts2" style="height: 600px;" class="col-md-6"></div>
 	</div>
 	<script type="text/javascript">
-	$(function() {
-		//加载图表数据
-		LoadingUserAnalysis();
-	});	
-	var myChart = echarts.init(document.getElementById('echarts'));
-	
-	function LoadingUserAnalysis(){
-		
-		$.get("${ctx}/CrudAction_loadingAnalysis.action", function(data) {
-			if (data != null) {	
-				
-				var typedata=new Array(data.length);
-				for(var i=0;i<data.length;i++){
-					typedata[i]=data[i].name;
-				}
-				
-				 myChart.setOption({
-					 
-					 title : {
+		$(function() {
+			//加载图表数据
+			LoadingUserAnalysis();
+		});
+		var myChart = echarts.init(document.getElementById('echarts'));
+
+		function LoadingUserAnalysis() {
+
+			$.get("${ctx}/CrudAction_loadingAnalysis.action", function(data) {
+				if (data != null) {
+
+					var typedata = new Array(data.length);
+					for (var i = 0; i < data.length; i++) {
+						typedata[i] = data[i].name;
+					}
+
+					myChart.setOption({
+
+						title : {
 							text : '文章类型统计',
 							subtext : '2017-11-11',
 							x : 'center'
@@ -75,13 +75,12 @@
 								}
 							}
 						} ]
-					 
-				 });
-			}
-		});
-		
-	}
-	
+
+					});
+				}
+			});
+
+		}
 	</script>
 </body>
 </html>
